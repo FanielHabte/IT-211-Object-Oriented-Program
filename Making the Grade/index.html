@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Grades</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <h1>Student Grades</h1>
+    <div id="studentData"></div>
+    <div id="summary"></div>
+
+    <script>
+        var grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27";
+
+        var studentArray = grades.split(", ");
+
+        var lowestScore = Infinity;
+        var highestScore = -Infinity;
+        var totalScore = 0;
+
+        var Final = "";
+
+        for (var i = 0; i < studentArray.length; i++) {
+            var studentData = studentArray[i].split("|");
+            var studentName = studentData[0];
+            var studentScore = parseInt(studentData[1]);
+
+            if (studentScore < lowestScore) {
+                lowestScore = studentScore;
+            }
+
+            if (studentScore > highestScore) {
+                highestScore = studentScore;
+            }
+
+            totalScore = totalScore + studentScore;
+
+            Final = Final + "<p>" + CFL (studentName) + " - " + studentScore + "</p>";
+        }
+
+        var averageScore = totalScore / studentArray.length;
+
+        var summary = "<p>Total : " + studentArray.length + "</p>";
+        summary += "<p>Lowest : " + lowestScore + "</p>";
+        summary += "<p>Highest : " + highestScore + "</p>";
+        summary += "<p>Average : " + averageScore.toFixed(2) + "</p>";
+
+        document.getElementById("studentData").innerHTML = Final;
+        document.getElementById("summary").innerHTML = summary;
+
+        function CFL(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    </script>
+</body>
+
+</html>
